@@ -1,0 +1,6 @@
+.is_current_state {
+    font-weight: bolder;
+    border-bottom: 1px solid black;
+    color: green;
+    font-size: +2;
+    }
