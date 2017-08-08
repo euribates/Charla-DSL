@@ -1,0 +1,820 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Leguajes específicos de dominio (DSL)</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+                <section>
+
+                    <section data-background="./art/cover.png">
+
+                    </section>        
+
+                    <section data-background="./art/background.png">
+                    <h3>¿Batman? ¿Es un nuevo Framework? ¿Un lenguaje?</h3>
+                    <h4>¿Un paradigma?</h4>
+                    <h5>¿Una librería, un técnica ...</h5>
+                    <img class="fragment" id="batman66" src="art/batman66.png" border="0">
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h3>Estamos en la TLP</h3>
+                    <h4>VAmos a pasarlo bien :-)</h4>
+                    </section>
+
+                </section>
+
+                <section>
+                    
+                    <section data-background="./art/background.png">
+                    <h2>¿Qué es un DSL?</h2>
+                    <h4>Y ejemplos</h4>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        
+                        <h3>Qué es un DSL</h3>
+                        <h4>Domain Specific Language</h4>
+                        
+                        <ul>
+                            <li class="fragment highlight-green"><b>Dominio:</b> El problema
+                                que queremos resolver</li>
+                            <li class="fragment highlight-green"><b>Específico:</b> Sólo para 
+                                ese dominio</li>
+                            <li class="fragment highlight-green"><b>Lenguaje:</b> Para ser 
+                                escrito y leído por personas</li>
+                        </ul>
+
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>¿Es una herramienta esotérica?</h3>
+                        <h4>¿Alguien ha usado un DSL antes?</h4>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Ejemplo 1: SQL</h3>
+                        <h4>Extraer información de un sistema de base de datos relacional</h4>
+                        <code>
+                        SELECT * 
+                          FROM VENTAS 
+                         WHERE precio <= 0.99;
+                        </code>
+                    </section>
+
+                    <section data-background="./art/background.png">
+
+                        <h3>Ejemplo 2: Expresiones regulares</h3>
+                        <h4>Buscar y extraer patrones de texto 
+                        dentro de otros textos.</h4>
+                        <code>
+                            [A-Za-z_][A-Za-z0-9_]*
+                        </code>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Ejemplo 3: CSS<h3>
+                        <h4>Especificar la apariencia gráfica de 
+                        elementos HTML</h4>
+                        <h5>No es un lenguaje de programación, 
+                        y sus usuarios no son necesariamente desarrolladores</h5>
+                        <code>
+                        div.titulo {
+                            color: #BB2266;
+                            font-size: 24pt;
+                            }
+                        </code>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Más ejemplos</h3>
+                        
+                        <h5>Html, Django templates, Jinja2, MarkDown, RST,
+                        Ficheros de configuración, Graphviz, Make, Rake,
+                        Gherkin Syntax, AWK, XAQL - Xapian Query Language Parser,
+                        Less, Sass, YAML, JSON, SIML, ...
+
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section data-background="./art/background.png">
+                    <h2>Características</h2>
+                    <h4>Y contraejemplos</h4>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Características</h3>
+                        <ul>
+                        
+                        <li><b class="fragment highlight-green">No son de uso
+                        general</b> (rara vez un DSL es turing-completo)</li>
+                        
+                        <li><b class="fragment highlight-green">Sencillos</b>, hacen únicamente lo que tienen que 
+                        hacer, nunca se salen del dominio</li>
+
+                        <li>Pensados para ser <b class="fragment highlight-green">leídos y escritos por 
+                        humanos</b> (aunque se puedan generar automáticamente)
+                        </li>
+                        </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Ejemplos de lenguajes que no son DSL (IMHO)</h3>
+                        <ul>
+
+                            <li><b class="fragment highlight-green">R (Estadísticas):</b> Restringido a un 
+                            dominio (estadísticas), pero en realidad es 
+                            un lenguaje turing-completo.</li>
+
+                            <li><b class="fragment highlight-green">XSLT:</b> 
+                            Restringido a un dominio (Transformar 
+                            contenidos XML), pero no pensado para ser leído o 
+                            escrito por humanos (cuerdos), como la lengua de 
+                            Mordor</li>
+
+                        </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Ventajas</h3>
+                        <ul>
+                        <li>El lenguaje es <b  class="fragment highlight-green">más 
+                        legible y corto</b></li>
+                        <li><b class="fragment highlight-green">No Turing-completo</b></li>
+                        <li>Puede ser usado <b class="fragment highlight-green">por personal 
+                        no técnico</b></li>
+                        <li><b class="fragment highlight-green">Flexible y adaptable</b></li>
+                        <li><b class="fragment highlight-green">Es texto:</b> Podemos
+                        transformarlo, almacenarlo, distribuirlo, encontrar diferencias, 
+                        representarlo, etc...</li>
+                        <li><b class="fragment highlight-green">Fomenta la colaboración</b> entre personas de distintas especialidades</li>
+                        <li><b class="fragment highlight-green">Control de versiones</b></li>
+                        </ul>
+
+                    </section>
+                </section>
+
+                <section>
+
+                    <section data-background="./art/background.png">
+                        <h2>Tipos de DSL</h2>
+                        <h4>Según Martin Fowler</h4>
+                        <img src="art/dsl-martin-fowler.jpg">
+                    </section>
+                    
+                    <section data-background="./art/background.png">
+                        <h3>Tipos de DSL</h2>
+                        <ul>
+                            <li>Internos</li>
+                            <li>Externos</li>
+                        </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>DSL Interno</h2>
+                        <ul>
+                            <li><b class="fragment highlight-green">Expande el interprete</b>
+                            de un lenguaje de propósito general</li>
+
+                            <li>Fácil, pero 
+                                <b class="fragment highlight-green"> 
+                                    condiciona la gramática</b> </li>
+
+                            <li><b class="fragment highlight-green">Parser gratis</b></li>
+                            <li><b class="fragment highlight-green">Ventajas:</b> 
+                            toda la potencia del lenguaje base</li>
+                            <li><b class="fragment highlight-green">Desventajas:</b> 
+                            toda la potencia del lenguaje base</li>
+                        </ul>
+                        <p>muy habitual en 
+                        lenguajes como ruby, scala, groovy, lisp...</p>
+
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Se puede implementar un DSL Interno en Python</h3>
+                        <ul>
+                            <li><b class="fragment highlight-green">No es el lenguaje más cómodo
+                                </b> para esto...</li>
+                            <li>... pero se pueden hacer <b class="fragment highlight-green">algunas 
+                                    cosas</b></li>
+                            <li>Hay librerías que nos permiten
+                            <b class="fragment highlight-green">manipular el
+                            arbol AST</b> que utiliza el propio Python para la
+                            generación de código</li>
+                            <li>Muy potente, muy loco, muy peligroso, muy 
+                            divertido. <b class="fragment highlight-green">Elige una</b></li>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>DSL Externos</h3>
+
+                        <ul>
+                            <li>El lenguaje es <b class="fragment highlight-green">totalmente 
+                            a nuestro gusto</b></li>
+                            <li>Tenemos que <b class="fragment highlight-green">
+                            escribir nuestro propio parser</b></li>
+                            <li>Mola, pero puede dar miedito. Pero <b class="fragment highlight-green">no
+                            es tan terrible como parece</b></li>
+                        </ul>
+
+                    </section>
+
+                </section>
+
+                <section>
+                    
+                    <section data-background="./art/background.png">
+                        <h3>Escribiremos nuestro propio lenguaje</h3>
+                        <h4>Bwahaha!</h4>
+                        <img src="art/shocking.gif">
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Estructura de un parser</h3>
+
+                        <h4>Distintos autores usan diferentes nombres, pero básicamente consta 
+                        de 4 fases:</h4>
+                        <ul>
+                        <li class="fragment highlight-green">Scanner</li>
+                        <li class="fragment highlight-green">Analizador Léxico, Tokenizer o Lexer</li>
+                        <li class="fragment highlight-green">Analizador Sintáctico o Parser</li>
+                        <li class="fragment highlight-green">Intérprete o generación de código</li>
+                        </ul>
+                        <p>Cada capa o fase usa los servicios de la anterior y pasa sus resultados a la siguiente</p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h3>Scanner</h3>
+                    <ul>
+                        <li><b class="fragment highlight-green">La primera capa 
+                        y la más sencilla</b>. Simplemente lee 
+                        la entrada carácter a carácter.</li>
+                        <li>A veces puede ser un poco más complicada. por 
+                        ejemplo, <b class="fragment highlight-green">puede que necesite 
+                        leer caracteres por delante 
+                        del actual</b>, para poder tomar decisiones
+                        Por ejemplo, para discriminar entre a++ y a+1</li>
+                    </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h3>Lexer/Tokenizer</h3>
+                    <ul>
+                    
+                    <li>También llamado <b class="fragment highlight-green">analizador 
+                    léxico</b></li>
+                    
+                    <li>Usando la salida del scanner, lee 
+                    caracteres y devuelve <b class="fragment highlight-green">una serie 
+                    de  unidades léxicas o Tokens</b>. Si fuera lenguaje humano: palabras y signos</li>
+                    
+                    <li>Es <b class="fragment highlight-green">sencillo de 
+                    implementar</b>. Una técnica muy usada es usar expresiones
+                    regulares</li>
+
+                    <li>Los tokens devueltos están <b class="fragment highlight-green">etiquetados</b>
+                    para saber su tipo. Si fuera lenguaje humano:
+                    palabra + función, p.e. verbo</li>
+                    
+                    </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <video controls autoplay>
+                            <source src="./art/lexer.mp4" type="video/mp4"></source>
+                        </video>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h3>Parser / Gramática</h3>
+                    <ul>
+                    <li>Organiza los tokens entregados por el lexer 
+                    <b class="fragment highlight-green">de forma que sean 
+                    procesables</b>. Esto es, normalmente, en forma de árbol</li>
+
+                    <li>Para ello utiliza una <b class="fragment highlight-green">Gramática 
+                    del lenguaje</b></li>
+
+                    <li>Existen <b class="fragment highlight-green">varios algoritmos</b>, 
+                    cada uno con sus ventajas e inconvenientes</li>
+
+                    <li><b class="fragment highlight-green">El turrón está aquí</b></li>
+                    </ul>
+
+                    </section> 
+
+                    <section data-background="./art/background.png">
+                        <h3>Diferencia entre léxica / Gramática</h3>
+                        <h4><span class="fragment">Cuanto</span> 
+                            <span class="fragment">peor </span> 
+                            <span class="fragment">mejor </span> 
+                            <span class="fragment">para </span> 
+                            <span class="fragment">todos </span> 
+                            <span class="fragment">y </span> 
+                            <span class="fragment">cuanto </span> 
+                            <span class="fragment"> peor </span> 
+                            <span class="fragment"> para </span> 
+                            <span class="fragment"> todos </span> 
+                            <span class="fragment"> mejor </span> 
+                            <span class="fragment"> mejor </span> 
+                            <span class="fragment"> para </span> 
+                            <span class="fragment"> mi </span> 
+                            <span class="fragment"> el </span> 
+                            <span class="fragment"> suyo </span> 
+                            <span class="fragment"> beneficio </span> 
+                            <span class="fragment"> político</span> 
+                            <span class="fragment"> [Fin de la cita]</span> 
+                            </h4>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h3>Generación/Ejecución de código</h3>
+                    <ul>
+                        
+                        <li>La <b class="fragment highlight-green">última fase</b>. 
+                        En el caso de un lenguaje de programación general, 
+                        se genera o ejecuta código, bytecodes o código ejecutable</li>
+                        
+                        <li>Normalmente en un DSL se <b class="fragment highlight-green">crea
+                        o controla un módelo</b></li>
+
+                        <li>En cualquier caso, es la fase final. <b class="fragment highlight-green">Lo que 
+                        hagamos con el árbol es cosa nuestra</b></li>
+                    </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section data-background="./art/background.png">
+                    <h3>Gramáticas</h3>
+                    <h4>Para todos</h4>
+                    <img src="art/mr_beam.png" id="mr-beam">
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>¿Que es una gramática?</h3>
+                        <ul>
+                            <li>Desde un punto de visto 
+                                formal, una gramática es 
+                                <b class="fragment highlight-green">un conjunto de reglas</b>
+                                llamadas <b>producciones</b></li>
+                            <li>De esas reglas, una debe ser 
+                                la <b class="fragment highlight-green">inicial</b></li>
+                            <li>Las reglas tienen la forma:<br>
+                                 <b class="fragment highlight-green">
+                                     &lt;parte derecha&gt; → &lt;parte izquierda&gt;
+                                 </b>
+                             </li>
+                        </ul>
+                        <p>la → se suele representar de muchas maneras,
+                        pero viene a significar “se define como”</p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Mejor con un ejemplo</h3>
+                        <p>Supongamos un lenguaje muy, muy sencillo:</p>
+                        <div class="codigo">
+                        <pre>
+Begin
+    Bob 12
+    Alice 26
+End
+                        </pre>
+                        </div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>¿Cómo definimos este lenguaje?</h3>
+
+                        <p>Baśicamente, entre <code>Begin</code> y
+                        <code>End</code>, 
+                        una lista de varios nombres,
+                        junto con un número.</p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Algunos detalles más...</h3>
+                        <ul>
+
+                            <li>Los nombres son <b class="fragment highlight-green">una sola
+                            palabra</b>; <code>Bob</code> es válido, <code>Robert Drake</code> no.</li>
+
+                            <li>La <b class="fragment highlight-green">primera 
+                                    letra del nombre tiene que ser
+                                    alfabética</b>, pero luego se aceptan números:
+                            <code>labo3</code> es válido pero <code>3ell</code> no.</li>
+
+                            <li>Los números son <b class="fragment highlight-green">enteros</b>,
+                                no se aceptan
+                            decimales, <code>123</code> es válido, <code>3.14</code> no.</li>
+
+                            <li><b class="fragment highlight-green">Al menos tiene que 
+                                    venir una línea de datos</b></li>
+
+                        </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Vale, ya lo tenemos claro, pero ...</h3>
+                        <h4>¿Como definimos eso de forma rigurosa?</h4>
+                        <p class="fragment">Es decir, matemática</p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Con una gramática</h3>
+                        <div class="codigo"><pre>
+Program --> Begin line+ End
+line --> id num
+id --> [A-Za-z][A-Za-z0-9]*
+num --> [0-9]+
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Otra gramática</h3>
+                        <div class="codigo"><pre>
+Program --> Begin lines End
+lines → line+
+line --> id num
+id --> [A-Za-z][A-Za-z0-9]*
+num --> [0-9]+
+                        </pre></div>
+                        <p>Una gramática define un lenguaje, pero un lenguaje
+                        puede ser definido por diferentes gramáticas</p>
+
+                    </section>
+                    
+                    <section data-background="./art/background.png">
+                        <h5>Diagrama de Vías ferreas</h5>
+
+                        <img id="via-ferrea" src="art/grafi.svg">
+
+                    </section>
+
+
+                    <section data-background="./art/background.png">
+                        <h5>Símbolos especiales</h5>
+                        <ul>
+                            <li><code>|</code> Representa alternativas, a|b significa que se puede generar a o b</li>
+
+                            <li><code>*</code> Significa repetición de cero o más</li>
+                            <li><code>+</code> Significa repetición de uno o más</li>
+                            <li><code>?</code> Opcional (uno o cero)</li>
+                            <li><code>[a-z]</code> Rango de caracteres.
+                        </ul>
+                        <p><code>[0-9]</code> se podría representar como 
+                        <code>0|1|2|3|4|5|6|8|9</code></p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h5>¿Por qué perder el tiempo con las gramáticas?</h5>
+                        <ul>
+                            <li>La gramática nos permite definir
+                                <b class="fragment highlight-green">que textos
+                                    pertenecen al lenguaje</b>, aun más
+                                interesante, <b class="fragment highlight-green">cuales 
+                                    no</b></li>
+
+                            <li>Es decir, que <b class="fragment highlight-green">si 
+                                    hay errores, los detectará</b></li>
+
+                            <li>Nos permiten <b class="fragment highlight-green">generar el 
+                                    parser de forma
+                                    automática</b></li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    
+                    <section data-background="./art/background.png">
+                    <h3>Ejemplo de DSL</h3>
+                    <h4>Y formas de implementarlo</h4>
+                        <img id="gotham-logo" src="art/gotham-logo.png">
+                    </section>
+
+                    <section data-background="./art/slide-gotham.png">
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h5><b>GOTHAN Electro<br>Mechanical
+                        Secret<br>Weapons and Devices</b></h5>
+                    <p><small>Una division de Industrias Wayne</small></p>
+
+                    <p>Liderer en instalación de mecanismos secretos
+                    de apertura y armamento sofisticado para el 
+                    heroe moderno</p>
+                    
+                    <p>GOTHAN Electro Mechanical
+                    Secret Weapons and Devices se dedica a instalar
+                    mecanismos automáticas para que su entrada secreta
+                    siga siendo, ejem,... secreta</p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h5>¡Cuéntame más!</h5>
+                        <img src="art/90F8aUepslB84.gif">
+                    </section>
+    
+                    <section data-background-video="batman.webm">
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h5>Como funcionan nuestros dispositivos</h3>
+                        <ul>
+                            <li>Los dispositiovos se comunican usando 
+                            un <b class="fragment highlight-green">bus de datos
+                            común</b></li>
+
+                            <li>El controlador y los dispositivos
+                                emiten <b class="fragment highlight-green">eventos 
+                                    o comandos de 4 letras</b></li>
+
+                            <li>Cada cliente pide una 
+                                <b class="fragment highlight-green">combinación diferente
+                                    de eventos</b> para abrir la puert</li>
+
+                            <li>Se implementa una maquina de estados, distinta
+                            para cada cliente</li>
+                        </ul>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                    <h5>Por ejemlo, nuestra cliente Selina Kyle...</h3>
+                        <p>Para abrir su escondite secreto:</p>
+                    <ul>
+                        <li>Debe cerrar la puerta de la sala (D1CL), y luego</li>
+                        <li>Encender la luz (l1ON) y abrir una gaveta (D2OP)</li>
+                        <li>O viveversa: Abrir gaveta y encender luz</li>
+                    </ul>
+                    <p>Solo si se pruduce esta secuencia se abre
+                    el escondite secreto</p>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <img src="art/grant.png">
+                    </section>
+
+                    <section data-background="./art/background.png">
+                         <h5>Maquina de estados en Python (Evento)</h5>
+                        <div class="codigo"><pre>
+
+class Event:
+    
+    def __init__(self, code, name=''):
+        self.code = code
+        self.name = name or code
+
+    ...
+
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                         <h5>Maquina de estados en Python (Estado)</h5>
+                        <div class="codigo"><pre>
+
+class State:
+    
+    def __init__(self, name, description=''):
+        self.name = name
+        self.description = description or self._desc(name)
+        self.actions = []
+        self.transitions = {}
+
+    ... 
+
+    def add_transition(self, event, state):
+        self.transitions[event.code] = state
+
+    def add_action(self, cmd):
+        self.actions.append(cmd)
+
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                         <h5>Maquina de estados en Python</h5>
+                        <div class="codigo"><pre>
+
+class StateMachine:
+    
+    def __init__(self, initial_state):
+        self.start = self.current_state = initial_state
+
+    def all_states(self):
+        ...
+
+    def all_event_codes(self):
+        ...
+
+    def handle(self, code):
+        state = self.current_state
+        if code in state.transitions:
+            new_state = state.transitions[code]
+            print('{} --[{}]--> {}'.format(state, code, new_state))
+            self.current_state = new_state
+            bus.send(return new_state.actions)
+
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                         <h5>Definir la máquna de estados (para Selina)</h5>
+                        <div class="codigo"><pre>
+idle = State('idle', 'En espera')                # Estados
+active = State('active', 'Activo')
+wait_for_draw = State('wait_for_draw', 'Waiting for drawer')
+wait_for_light = State('wait_for_light', 'Waiting for light')
+unlock_panel = State('unlock_panel', 'Opened Panel')
+
+door_closed = Event('D1CL', 'Door closed')       # Eventos
+light_on = Event('L1ON')
+open_drawer = Event('D2OP')
+open_panel = Event('PNOP')
+close_panel = Event('PNCL')
+
+idle.add_transition(door_closed, active)         # Transitions
+active.add_transition(light_on, wait_for_draw)
+active.add_transition(open_drawer, wait_for_light)
+wait_for_draw.add_transition(open_drawer, unlock_panel)
+wait_for_light.add_transition(light_on, unlock_panel)
+unlock_panel.add_action(open_panel)
+unlock_panel.add_transition(close_panel, idle)
+
+sm = StateMachine(idle)
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Vale, funciona</h3>
+                        <h5>... ¿Y si le añadimos un DSL para definir los estados?</h5>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Por ejemplo</h3>
+                        <div class="codigo"><pre>
+script -> transitions + actions
+transtitions -> transition+
+actions -> action*
+transition -> estado "--" codigo "-->" estado
+action -> estado -> codigo
+estado -> [a-z][a-z_0-9]*
+codigo -> [a-zA-Z]{4}
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>La máquina de estados en nuestro DSL</h3>
+                        <div class="codigo"><pre>
+idle -- D1CL -> active                  // transactions
+active -- L1ON -> wait_for_draw
+wait_for_draw -- D2OP -> unlock_panel
+active -- D2OP ->  wait_for_light
+wait_for_light -- L1ON -> unlock_panel
+unlock_panel -- PNCL -> idle
+
+wait_for_draw -> LED1                  // actions
+wait_for_light -> LED2
+wait_for_light -> ALRM
+unlock_panel -> OPEN
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h3>Implementación con pyparsing</h3>
+                        <div class="codigo"><pre>
+    _tail = Suppress('--')
+    _arrow = Suppress('->')
+
+    state = Word(alphas, alphanums+'_')
+    code = Regex('[A-Z0-9]{4}')
+    transition = state + _tail + code + _arrow + state
+    transitions = OneOrMore(transition)
+    action = state + _arrow + code
+    actions = ZeroOrMore(action)
+    script = transitions + actions + StringEnd()
+    script.ignore(dblSlashComment)                        
+                        </pre></div>
+                    </section>
+
+                    <section data-background="./art/background.png">
+                        <h1>¡10 líneas de código!</h1>
+                        <h5><small>Ten fucking lines of code!</small></h5>
+                    </section>
+
+                </section>
+
+            <section>
+                
+                <section data-background="./art/background.png">
+                    <h2>Conclusiones</h2>
+                    <img src="art/conclusiones.png" id="conclusiones">
+                </section>
+
+                <section data-background="./art/background.png">
+                    <h2>Peligros</h2>
+                    <ul>
+                        <li>Complicar el DSL</li>
+                        <li>El DSL es un modelo. Todos los modelos son incorrectos</li>
+                        <li>Es código</li>
+                        <li>Es una herramienta muy específica, para
+                            ser usado ante determindos problemas</li>
+                    </ul>
+                </section>
+
+                <section data-background="./art/background.png">
+                    <h2>Otros usos</h2>
+                    <ul>
+                        <li>Parsear ficheros de configuración</li>
+                        <li>Procesar ficheros de datos de los "raritos"</li>
+                        <li>Análisis de código / texto </li>
+                        <li>Para cuando las expresiones regulares
+                            se te quedan cortas</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section data-background="./art/background.png">
+                    <h2>Por qué debería plantearme usarlo?</h2>
+                    <ul>
+                        <li>Su princiapl virtud es la 
+                            <b class="fragment highlight-green">simplificacion y 
+                            mejora estética</b> del código:
+                        <li>No es tan banal como suena:</li>
+                            <ul>
+                                <li><b class="fragment highlight-green">Mejorar la 
+                                    comunicación</b> dentro
+                                    y fuera del equipo</li>
+                                <li><b class="fragment highlight-green">Menos errores</b></li>
+                            </ul>
+                        </li>
+                        <li>Es un añadido <b class="fragment highlight-green">
+                                relativamante sencillo
+                                </b> y útil 
+                                <b class="fragment highlight-green">a tu batcinturón</b>
+                            </b></li>
+                    </ul>
+
+                </section>
+
+            </section>
+
+            <section data-background="./art/background.png">
+                <h1>¡Gracias!</h1>
+                <h3>Por aguantar esta chapa</h3>
+                <h5>Juan Ignacio Rodríguez de León</h5>
+                <h6>@jileon en twitter</h6>
+                <h6>email: euribates@gmail.com</h6>
+            </section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
