@@ -1,0 +1,46 @@
+
+#batman66 {
+    background:none;
+    border:none!important;
+    box-shadow:none;
+    }
+
+#conclusiones {
+    background:none;
+    border:none!important;
+    box-shadow:none;
+    }
+
+#mr-beam {
+    background:none;
+    border:none!important;
+    box-shadow:none;
+    }
+
+#gotham-logo {
+    background:none;
+    border:none!important;
+    box-shadow:none;
+    }
+
+
+
+#via-ferrea {
+    background: white;
+    border:none!important;
+    box-shadow:none;
+    }
+
+
+code {
+    font-family: monospace;
+    border: px solid white;
+}
+
+.codigo {
+    background-color: #FFFAD5!important;
+    color: #00013C;
+    border: 1px solid silver;
+    font-size: 32pt!important;
+    font-family: monospace;
+}
