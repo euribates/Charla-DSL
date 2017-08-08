@@ -1,0 +1,9 @@
+digraph G {
+    idle[shape=doublecircle];
+    idle -> active [label="D1CL"];
+    unlock_panel -> idle [label="PNCL"];
+    wait_for_light -> unlock_panel [label="L1ON"];
+    active -> wait_for_light [label="D2OP"];
+    active -> wait_for_draw [label="L1ON"];
+    wait_for_draw -> unlock_panel [label="D2OP"];
+}

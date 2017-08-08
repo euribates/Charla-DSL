@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <title>Gothan State Machines tests</title>
+  <script src="vue.js"></script>
+  <script src="data.js"></script>
+
+</head>
+<body>
+  <div id="app" class="container">
+    {{ message }}
+
+    <div class="row">
+
+        <div class="six columns">
+            <h3>Gothan State Machines tests</h3>
+        </div>
+        <div class="six columns">
+            <h5>Una division de Empresas Wayne</h5>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="five columns">
+            <h2>States</h2>
+                <ul>
+
+                <li :class="{is_current_state:state.name==current_state}" v-for="state in states">{{ state.name }}
+                    <span v-if="state.name==current_state">✓</span>
+                    
+                    {{ state.name==current_state }} 
+                    </li>
+                </ul>
+        </div>
+
+        <div class="five columns">
+ 
+        <h2>Eventos</h2>
+        <ul>
+            <p v-for="code in events">
+                <button class="button-primary" v-on:click="send">{{ code }}</p>
+                </p>
+        </ul>
+        </div>
+
+        <div class="two columns">
+            <h2>BUS LOG</h2>
+            <ul>
+                <li v-for="item in bus_log">{{ item }}</li>
+            </ul>
+        </div>
+    </div><!-- de row -->
+</div><!-- de container -->
+
+<script>
+
+var app = new Vue({
+    "el": '#app',
+    "data": data,
+    "methods": {
+        "send": function(evt) {
+            var code = evt.target.innerText;
+            this.handle(code);
+            },
+        "handle": function(code) {
+            this.bus_log.push(code);
+            var state = this.current_state;
+            if (code in this.transitions[state]) {
+                this.current_state = this.transitions[state][code];
+                if (this.current_state in this.actions) {
+                    var new_actions = this.actions[this.current_state];
+                    console.log('new_actions', new_actions);
+                    for (i in new_actions) { 
+                        var code = new_actions[i];
+                        console.log('code', code);
+                        this.handle(code); 
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+  </script>
+</body>
+</html>
